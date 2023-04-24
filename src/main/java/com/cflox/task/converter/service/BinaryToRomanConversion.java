@@ -9,7 +9,7 @@ public class BinaryToRomanConversion implements ConversionService {
 
     @Override
     public boolean matches(ConversionType from, ConversionType to) {
-        return true;
+        return ConversionType.BINARY.equals(from) && ConversionType.ROMAN.equals(to);
     }
 
     @Override
