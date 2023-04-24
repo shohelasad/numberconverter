@@ -1,9 +1,9 @@
 package com.cflox.task.converter.factory;
 
-import net.javaguides.springboot.enums.ConversionType;
-import net.javaguides.springboot.service.BinaryToRomanConversion;
-import net.javaguides.springboot.service.ConversionService;
-import net.javaguides.springboot.service.DecimalToRomanConversion;
+import com.cflox.task.converter.enums.ConversionType;
+import com.cflox.task.converter.service.BinaryToRomanConversion;
+import com.cflox.task.converter.service.ConversionService;
+import com.cflox.task.converter.service.DecimalToRomanConversion;
 
 import java.util.ArrayList;
 import java.util.Arrays;
