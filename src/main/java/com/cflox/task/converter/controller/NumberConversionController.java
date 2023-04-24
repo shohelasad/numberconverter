@@ -1,6 +1,7 @@
 package com.cflox.task.converter.controller;
 
 import com.cflox.task.converter.dto.ConversionRequest;
+import com.cflox.task.converter.factory.ConversionFactory;
 import com.cflox.task.converter.service.ConversionService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,6 +16,7 @@ public class NumberConversionController {
 
     @PostMapping("/conversions")
     public String getConversion(@RequestBody ConversionRequest request){
+        conversionService = new ConversionFactory().process(request.getFrom(), request.getTo());
         return conversionService.convert(request.getNumber());
     }
 
