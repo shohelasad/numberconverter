@@ -17,5 +17,15 @@ public class ConversionUtils {
         return roman.toString();
     }
 
+    public static int binaryToDecimal(int binary) {
+        int decimal = 0, power = 0;
+        while (binary > 0) {
+            int digit = binary % 10;
+            decimal += digit * Math.pow(2, power);
+            binary /= 10;
+            power++;
+        }
 
+        return decimal;
+    }
 }

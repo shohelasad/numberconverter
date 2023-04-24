@@ -11,4 +11,9 @@ class ConversionUtilsTest {
     void decimalToRomanTest() {
         assertEquals("IV", ConversionUtils.decimalToRoman(4));
     }
+
+    @Test
+    void binaryToDecimalTest() {
+        assertEquals(2, ConversionUtils.binaryToDecimal(10));
+    }
 }
