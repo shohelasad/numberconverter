@@ -6,7 +6,5 @@ public class ConversionUtils {
         return null;
     }
 
-    public static int binaryToDecimal(int binary) {
-        return 0;
-    }
+
 }
