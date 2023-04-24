@@ -21,4 +21,10 @@ public class DecimalToRomanConversionTest {
         Assertions.assertEquals("MX", result);
     }
 
+    @Test
+    public void testConvertInvalidInput() {
+        String result = conversion.convert("hello");
+        Assertions.assertNull(result);
+    }
+
 }
