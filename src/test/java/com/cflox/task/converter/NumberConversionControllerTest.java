@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -35,6 +36,34 @@ public class NumberConversionControllerTest {
 
         // then
         assertEquals("XLII", mvcResult.getResponse().getContentAsString());
+    }
+
+    @Test
+    public void givenValidConversionRequest_whenPostRequestWithDecimalToRoman_thenStatus200() throws Exception {
+        // given
+        ConversionRequest request = new ConversionRequest(ConversionType.DECIMAL, ConversionType.ROMAN, "931");
+        // when
+        MvcResult mvcResult = mockMvc.perform(post("/api/v1/conversions")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(request))
+                        .header(HttpHeaders.ORIGIN, "http://localhost:3000"))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        // then
+        assertEquals("CMXXXI", mvcResult.getResponse().getContentAsString());
+    }
+
+    @Test
+    public void givenInValidConversionRequest_whenPostRequestWith200() throws Exception {
+        // given
+        ConversionRequest request = new ConversionRequest(ConversionType.ROMAN, ConversionType.DECIMAL, "CMXXXI");
+        // when
+        MvcResult mvcResult = mockMvc.perform(post("/api/v1/conversions")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(request)))
+                .andExpect(status().isNotFound())
+                .andReturn();
     }
 
 }
