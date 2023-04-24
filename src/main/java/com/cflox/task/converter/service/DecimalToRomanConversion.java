@@ -15,6 +15,13 @@ public class DecimalToRomanConversion implements ConversionService {
 
     @Override
     public String convert(String input) {
+        try {
+            int decimal = Integer.valueOf(input);
+            return ConversionUtils.decimalToRoman(decimal);
+        } catch (NumberFormatException e) {
+            //log
+        }
+
         return null;
     }
 }
