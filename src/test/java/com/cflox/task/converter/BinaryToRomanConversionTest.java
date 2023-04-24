@@ -20,4 +20,10 @@ public class BinaryToRomanConversionTest {
         String result = conversion.convert("1010");
         Assertions.assertEquals("X", result);
     }
+
+    @Test
+    public void testConvertInvalidInput() {
+        String result = conversion.convert("hello");
+        Assertions.assertNull(result);
+    }
 }
