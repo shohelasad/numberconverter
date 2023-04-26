@@ -1,10 +1,12 @@
 package com.cflox.task.converter.dto;
 
 import com.cflox.task.converter.enums.ConversionType;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 
 @Getter

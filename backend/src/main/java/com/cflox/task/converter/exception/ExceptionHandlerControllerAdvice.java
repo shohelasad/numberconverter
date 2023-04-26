@@ -2,17 +2,19 @@ package com.cflox.task.converter.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.validation.ConstraintViolationException;
 import java.time.LocalDateTime;
 
 
 @ControllerAdvice
 public class ExceptionHandlerControllerAdvice extends RuntimeException {
     @ExceptionHandler({ResourceNotFoundException.class})
-    public ResponseEntity<ErrorMessages> resourceAccessException(ResourceNotFoundException ex, WebRequest request) {
+    public ResponseEntity<ErrorMessages> resourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
         ErrorMessages message = new ErrorMessages(
                 HttpStatus.NOT_FOUND.value(),
                 LocalDateTime.now(),
@@ -20,6 +22,17 @@ public class ExceptionHandlerControllerAdvice extends RuntimeException {
                 request.getDescription(false));
 
         return new ResponseEntity<ErrorMessages>(message, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<?>  handleValidationExceptions(MethodArgumentNotValidException ex, WebRequest request) {
+        ErrorMessages message = new ErrorMessages(
+                HttpStatus.BAD_REQUEST.value(),
+                LocalDateTime.now(),
+                ex.getMessage(),
+                request.getDescription(false));
+
+        return new ResponseEntity<ErrorMessages>(message, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(Exception.class)
