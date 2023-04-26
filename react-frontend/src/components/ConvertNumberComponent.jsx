@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ConversionService from '../services/ConversionService';
 
 class ConvertNumberComponent extends Component {
     constructor(props) {
@@ -28,6 +29,10 @@ class ConvertNumberComponent extends Component {
         console.log('request => ' + JSON.stringify(request));
 
         // Call your service method here to handle the conversion
+        ConversionService.convert(request).then(res =>{
+            console.log(res);
+            this.setState({ result: res.data});
+        });
     }
 
     changeFromHandler(event) {
