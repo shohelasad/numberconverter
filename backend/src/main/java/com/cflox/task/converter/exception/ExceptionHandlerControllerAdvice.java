@@ -5,8 +5,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.management.BadAttributeValueExpException;
 import javax.validation.ConstraintViolationException;
 import java.time.LocalDateTime;
 
@@ -24,8 +26,19 @@ public class ExceptionHandlerControllerAdvice extends RuntimeException {
         return new ResponseEntity<ErrorMessages>(message, HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<?>  handleValidationExceptions(MethodArgumentNotValidException ex, WebRequest request) {
+    @ExceptionHandler({BadRequestException.class})
+    public ResponseEntity<ErrorMessages> badRequestExceptions(BadRequestException ex, WebRequest request) {
+        ErrorMessages message = new ErrorMessages(
+                HttpStatus.BAD_REQUEST.value(),
+                LocalDateTime.now(),
+                ex.getMessage(),
+                request.getDescription(false));
+
+        return new ResponseEntity<ErrorMessages>(message, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler({MethodArgumentNotValidException.class})
+    public ResponseEntity<?> methodArgumentNotValidException(MethodArgumentNotValidException ex, WebRequest request) {
         ErrorMessages message = new ErrorMessages(
                 HttpStatus.BAD_REQUEST.value(),
                 LocalDateTime.now(),
