@@ -11,7 +11,7 @@ public class ConversionUtils {
 
     public static String decimalToRoman(int decimal) {
         if(decimal > MAX_NUMBER) {
-            throw new BadRequestException("Number can be larger than 3999!");
+            throw new BadRequestException("Number can not be larger than 3999!");
         }
         StringBuilder roman = new StringBuilder();
         int[] decimalValues = new int[]{1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1};
