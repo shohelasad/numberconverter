@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BinaryToRomanConversion implements ConversionService {
-    private static final Logger LOGGER = LoggerFactory.getLogger(BinaryToRomanConversion.class);
 
     @Override
     public boolean matches(String from, String to) {
