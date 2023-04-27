@@ -1,6 +1,7 @@
 package com.cflox.task.converter.audittrail;
 
 import com.cflox.task.converter.dto.ConversionRequest;
+import com.cflox.task.converter.entity.AuditLog;
 import com.cflox.task.converter.repository.AuditLogRepository;
 import com.cflox.task.converter.service.BinaryToRomanConversion;
 import com.fasterxml.jackson.core.JsonProcessingException;

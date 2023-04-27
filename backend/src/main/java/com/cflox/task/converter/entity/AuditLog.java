@@ -1,4 +1,4 @@
-package com.cflox.task.converter.audittrail;
+package com.cflox.task.converter.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
