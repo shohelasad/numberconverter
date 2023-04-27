@@ -19,8 +19,8 @@ public class BinaryToRomanConversion implements ConversionService {
     @Override
     public String convert(String input) {
         try {
-            int binary = Integer.valueOf(input);
-            return ConversionUtils.decimalToRoman(ConversionUtils.binaryToDecimal(binary));
+            int decimal = Integer.parseInt(input, 2);
+            return ConversionUtils.decimalToRoman(decimal);
         } catch (NumberFormatException e) {
             throw new BadRequestException(input + " can not be parsed to number");
         }

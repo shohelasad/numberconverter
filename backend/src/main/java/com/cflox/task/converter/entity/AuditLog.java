@@ -64,8 +64,7 @@ public class AuditLog {
 
     @Override
     public String toString() {
-        return "AuditLog{" +
-                ", timestamp=" + timestamp +
+        return "AuditLog{timestamp=" + timestamp +
                 ", conversionType='" + conversionType + '\'' +
                 ", inputParams='" + inputParams + '\'' +
                 ", outputParams='" + outputParams + '\'' +

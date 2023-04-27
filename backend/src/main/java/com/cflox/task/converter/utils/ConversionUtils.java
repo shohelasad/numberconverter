@@ -1,10 +1,6 @@
 package com.cflox.task.converter.utils;
 
 import com.cflox.task.converter.exception.BadRequestException;
-import com.cflox.task.converter.service.BinaryToRomanConversion;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.web.client.HttpClientErrorException;
 
 public class ConversionUtils {
     private static final int MAX_NUMBER = 3999;
@@ -25,20 +21,5 @@ public class ConversionUtils {
         }
 
         return roman.toString();
-    }
-
-    public static int binaryToDecimal(int binary) {
-        int decimal = 0, power = 0;
-        while (binary > 0) {
-            int digit = binary % 10;
-            if(digit > 1) {
-               throw new BadRequestException(binary + " is not valid binary number!");
-            }
-            decimal += digit * Math.pow(2, power);
-            binary /= 10;
-            power++;
-        }
-
-        return decimal;
     }
 }
