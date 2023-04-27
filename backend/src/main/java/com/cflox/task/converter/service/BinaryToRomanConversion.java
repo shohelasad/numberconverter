@@ -13,8 +13,8 @@ public class BinaryToRomanConversion implements ConversionService {
     private static final Logger LOGGER = LoggerFactory.getLogger(BinaryToRomanConversion.class);
 
     @Override
-    public boolean matches(ConversionType from, ConversionType to) {
-        return ConversionType.BINARY.equals(from) && ConversionType.ROMAN.equals(to);
+    public boolean matches(String from, String to) {
+        return ConversionType.BINARY.name().equals(from) && ConversionType.ROMAN.name().equals(to);
     }
 
     @Override

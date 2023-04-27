@@ -1,39 +1,37 @@
 package com.cflox.task.converter.dto;
 
-import com.cflox.task.converter.enums.ConversionType;
-
 import javax.validation.constraints.NotNull;
 
 public class ConversionRequest {
 
     @NotNull
-    private ConversionType from;
+    private String from;
 
     @NotNull
-    private ConversionType to;
+    private String to;
 
     @NotNull
     private String number;
 
-    public ConversionRequest(ConversionType from, ConversionType to, String number) {
+    public ConversionRequest(String from, String to, String number) {
         this.from = from;
         this.to = to;
         this.number = number;
     }
 
-    public ConversionType getFrom() {
+    public String getFrom() {
         return from;
     }
 
-    public void setFrom(ConversionType from) {
+    public void setFrom(String from) {
         this.from = from;
     }
 
-    public ConversionType getTo() {
+    public String getTo() {
         return to;
     }
 
-    public void setTo(ConversionType to) {
+    public void setTo(String to) {
         this.to = to;
     }
 

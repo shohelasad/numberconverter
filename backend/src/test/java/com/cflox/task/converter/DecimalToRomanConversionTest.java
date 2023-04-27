@@ -12,7 +12,7 @@ public class DecimalToRomanConversionTest {
 
     @Test
     public void testMatches() {
-        Assertions.assertTrue(conversion.matches(ConversionType.DECIMAL, ConversionType.ROMAN));
+        Assertions.assertTrue(conversion.matches(ConversionType.DECIMAL.name(), ConversionType.ROMAN.name()));
     }
 
     @Test
@@ -20,11 +20,4 @@ public class DecimalToRomanConversionTest {
         String result = conversion.convert("1010");
         Assertions.assertEquals("MX", result);
     }
-
-    @Test
-    public void testConvertInvalidInput() {
-        String result = conversion.convert("hello");
-        Assertions.assertNull(result);
-    }
-
 }

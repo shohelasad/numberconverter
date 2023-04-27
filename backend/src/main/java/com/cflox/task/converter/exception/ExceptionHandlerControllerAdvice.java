@@ -12,15 +12,15 @@ import java.time.LocalDateTime;
 
 @ControllerAdvice
 public class ExceptionHandlerControllerAdvice extends RuntimeException {
-    @ExceptionHandler({ResourceNotFoundException.class})
-    public ResponseEntity<ErrorMessages> resourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
+    @ExceptionHandler({UnsupportedOperationException.class})
+    public ResponseEntity<ErrorMessages> methodNotAllowedException(UnsupportedOperationException ex, WebRequest request) {
         ErrorMessages message = new ErrorMessages(
-                HttpStatus.NOT_FOUND.value(),
+                HttpStatus.METHOD_NOT_ALLOWED.value(),
                 LocalDateTime.now(),
                 ex.getMessage(),
                 request.getDescription(false));
 
-        return new ResponseEntity<ErrorMessages>(message, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<ErrorMessages>(message, HttpStatus.METHOD_NOT_ALLOWED);
     }
 
     @ExceptionHandler({BadRequestException.class})

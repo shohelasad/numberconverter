@@ -12,8 +12,8 @@ public class DecimalToRomanConversion implements ConversionService {
     private static final Logger LOGGER = LoggerFactory.getLogger(BinaryToRomanConversion.class);
 
     @Override
-    public boolean matches(ConversionType from, ConversionType to) {
-        return ConversionType.DECIMAL.equals(from) && ConversionType.ROMAN.equals(to);
+    public boolean matches(String from, String to) {
+        return ConversionType.DECIMAL.name().equals(from) && ConversionType.ROMAN.name().equals(to);
     }
 
     @Override

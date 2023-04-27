@@ -33,7 +33,7 @@ mvn spring-boot:run
 mvn test
 ```
 
-## Run with Docker Compose
+## Run with maven clean build and create jar
 
 Package the application as a JAR file (find the jar in backend/target)
 
