@@ -1,6 +1,7 @@
 package com.cflox.task.converter.service;
 
 import com.cflox.task.converter.enums.ConversionType;
+import com.cflox.task.converter.exception.BadRequestException;
 import com.cflox.task.converter.utils.ConversionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +22,7 @@ public class DecimalToRomanConversion implements ConversionService {
             int decimal = Integer.valueOf(input);
             return ConversionUtils.decimalToRoman(decimal);
         } catch (NumberFormatException e) {
-            LOGGER.info(input + " can not be parsed to number");
-            return null;
+            throw new BadRequestException(input + " can not be parsed to number");
         }
     }
 }

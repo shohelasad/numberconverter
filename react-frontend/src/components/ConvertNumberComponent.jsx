@@ -27,11 +27,12 @@ class ConvertNumberComponent extends Component {
             number: this.state.number
         };
         console.log('request => ' + JSON.stringify(request));
-
-        // Call your service method here to handle the conversion
-        ConversionService.convert(request).then(res =>{
+        ConversionService.convert(request).then(res => {
             console.log(res);
-            this.setState({ result: res.data});
+            this.setState({ error: '', result: res.data });
+        }).catch(error => {
+            console.error("An error occurred:", error);
+            this.setState({ error: error.response.data.message, result: '' });
         });
     }
 
@@ -51,15 +52,11 @@ class ConvertNumberComponent extends Component {
         this.setState({ result: event.target.value });
     }
 
-    cancel() {
-        this.props.history.push('/employees');
-    }
-
     getTitle() {
         return <h3 className="text-center">Convert Number</h3>
     }
 
-    render() {
+     render() {
         return (
             <div>
                 <br />
@@ -101,7 +98,7 @@ class ConvertNumberComponent extends Component {
                                             readOnly
                                         />
                                     </div>
-
+                                    {this.state.error && <div className="alert alert-danger">{this.state.error}</div>}
                                     <button className="btn btn-success" onClick={this.convertNumber}>Convert</button>
                                 </form>
                             </div>
@@ -110,7 +107,6 @@ class ConvertNumberComponent extends Component {
                 </div>
             </div>
         )
-    }
+     }
 }
-
 export default ConvertNumberComponent;
