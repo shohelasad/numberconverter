@@ -39,3 +39,4 @@ gen/
 build/
 build.properties
 
+/target/
